@@ -1,0 +1,10 @@
+#include 
+automation manual: !include_dir_merge_list include/automations
+
+mqtt:
+  sensor: !include_dir_merge_list include/mqtt/sensor 
+  binary_sensor: !include_dir_merge_list include/mqtt/binary_sensor 
+  
+input_number: !include_dir_merge_named include/input_number
+input_button: !include_dir_merge_named include/input_button
+input_select: !include_dir_merge_named include/input_select
