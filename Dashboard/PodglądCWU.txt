@@ -1,0 +1,23 @@
+type: entities
+state_color: true
+entities:
+  - entity: sensor.hewalex_temp_cwu_eko
+    name: Temp. CWU eko
+  - entity: sensor.hewalex_temp_cwu_komfort
+    name: Temp. CWU komfort
+  - entity: sensor.hewalex_histereza_zalaczenia_cwu
+    name: Histereza załączenia CWU
+  - type: section
+  - entity: binary_sensor.hewalex_obieg_cwu_tryb_goscia
+    name: Tryb gościa - grzanie CWU
+  - entity: input_button.hewalex_tryb_goscia_cwu_on
+    name: Tryb gościa - Włącz
+  - entity: input_button.hewalex_tryb_goscia_cwu_off
+    name: Tryb gościa - Wyłącz
+title: Pompa ciepła - obieg CWU
+card_mod:
+  style: |
+    :host {
+    --ha-card-header-font-size: 
+      20px
+    } 
