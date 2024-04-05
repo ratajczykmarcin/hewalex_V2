@@ -1,0 +1,32 @@
+square: false
+columns: 1
+type: grid
+cards:
+  - type: entities
+    state_color: true
+    entities:
+      - entity: input_select.hewalex_cwu_status
+        name: Włączenie
+      - type: section
+      - entity: binary_sensor.hewalex_obieg_cwu_wlaczenie
+        name: Obieg CWU - włączenie
+      - type: section
+      - entity: input_number.hewalex_temp_cwu_eko
+      - entity: input_number.hewalex_temp_cwu_komfort
+      - entity: input_number.hewalex_histereza_zalaczenia_cwu
+    title: Pompa ciepła - obieg CWU
+    footer:
+      type: buttons
+      entities:
+        - entity: input_button.hewalex_obieg_cwu_save
+          name: Zapisz
+          show_icon: false
+        - entity: input_button.hewalex_obieg_cwu_refresh
+          name: Odśwież
+          show_icon: false
+    card_mod:
+      style: |
+        :host {
+        --ha-card-header-font-size: 
+          20px
+        } 
