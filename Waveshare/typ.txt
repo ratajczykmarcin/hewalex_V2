@@ -4,3 +4,5 @@ RS485 to RJ45 Ethernet,
 TCP/IP to serial,
 rail-mount support, with
 POE function(optional)
+
+https://www.waveshare.com/wiki/RS485_TO_ETH_(B)
