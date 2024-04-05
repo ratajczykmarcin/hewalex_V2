@@ -1,0 +1,16 @@
+##
+hewalex_obieg_cwu_save:
+  name: "Zapisz"
+  icon: mdi:content-save-cog
+
+hewalex_obieg_cwu_refresh:
+  name: "Odśwież"
+  icon: mdi:cog-refresh
+  
+hewalex_tryb_goscia_cwu_on:
+  name: "Włącz"
+  icon: mdi:water-thermometer
+
+hewalex_tryb_goscia_cwu_off:
+  name: "Wyłącz"
+  icon: mdi:water-thermometer-outline

@@ -1,0 +1,141 @@
+####################################################
+#          OBIEG CWU
+###################################################
+
+#--ZAPISZ
+- alias: "Hewalex - Obieg CWU save"
+  description: "Wyślij po MQTT wartości do zapisu"
+  trigger:
+    - platform: state
+      entity_id: input_button.hewalex_obieg_cwu_save
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "ha/hewalex/p1072/set"
+        payload: "{{ states('input_number.hewalex_temp_cwu_eko') | int }}"
+    - service: mqtt.publish
+      data:
+        topic: "ha/hewalex/p1070/set"
+        payload: "{{ states('input_number.hewalex_temp_cwu_komfort') | int }}"
+    - service: mqtt.publish
+      data:
+        topic: "ha/hewalex/p1012/set"
+        payload: "{{ states('input_number.hewalex_histereza_zalaczenia_cwu') | int }}"
+    - service: mqtt.publish
+      data:
+        topic: "ha/hewalex/p1160/set"
+        payload: "{{ states('input_select.hewalex_cwu_status') }}"
+
+#--Odśwież
+- alias: "Hewalex - Obieg CWU odśwież"
+  description: "Ustaw input number na wartość z aktualnych parametrów"
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: input_button.hewalex_obieg_cwu_refresh
+  action:
+    - service: input_number.set_value
+      data:
+        value: "{{ states('sensor.hewalex_temp_cwu_eko') | int }}"
+      target:
+        entity_id: input_number.hewalex_temp_cwu_eko
+    - service: input_number.set_value
+      data:
+        value: "{{ states('sensor.hewalex_temp_cwu_komfort') | int }}"
+      target:
+        entity_id: input_number.hewalex_temp_cwu_komfort
+    - service: input_number.set_value
+      data:
+        value: "{{ states('sensor.hewalex_histereza_zalaczenia_cwu') | int }}"
+      target:
+        entity_id: input_number.hewalex_histereza_zalaczenia_cwu
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.hewalex_cwu_status
+      data:
+        option: >-
+          {% if is_state('binary_sensor.hewalex_obieg_cwu_wlaczenie', 'on') %} Tak
+          {% else %} Nie {% endif %}
+
+#--Tryb goościa ON
+- alias: "Hewalex - Tryb gościa CWU on"
+  description: "Wyślij po MQTT wartości do zapisu"
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: input_button.hewalex_tryb_goscia_cwu_on
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "ha/hewalex/p1372/set"
+        payload: "Tak"
+
+#--Tryb goościa OFF
+- alias: "Hewalex - Tryb gościa CWU off"
+  description: "Wyślij po MQTT wartości do zapisu"
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: input_button.hewalex_tryb_goscia_cwu_off
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "ha/hewalex/p1372/set"
+        payload: "Nie"
+
+
+
+
+- alias: "Hewalex - Temp. CWU eko odśwież"
+  description: "Ustaw input number na wartość z aktualnych parametrów"
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: sensor.hewalex_temp_cwu_eko
+  action:
+    - service: input_number.set_value
+      data:
+        value: "{{ states('sensor.hewalex_temp_cwu_eko') | int }}"
+      target:
+        entity_id: input_number.hewalex_temp_cwu_eko
+
+- alias: "Hewalex - Temp. CWU komfort odśwież"
+  description: "Ustaw input number na wartość z aktualnych parametrów"
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: sensor.hewalex_temp_cwu_komfort
+  action:
+    - service: input_number.set_value
+      data:
+        value: "{{ states('sensor.hewalex_temp_cwu_komfort') | int }}"
+      target:
+        entity_id: input_number.hewalex_temp_cwu_komfort
+        
+- alias: "Hewalex - Histereza załączenia odśwież"
+  description: "Ustaw input number na wartość z aktualnych parametrów"
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: sensor.hewalex_histereza_zalaczenia_cwu
+  action:
+    - service: input_number.set_value
+      data:
+        value: "{{ states('sensor.hewalex_histereza_zalaczenia_cwu') | int }}"
+      target:
+        entity_id: input_number.hewalex_histereza_zalaczenia_cwu
+        
+- alias: "Hewalex - CWU status odśwież"
+  description: "Ustaw input select na wartość z aktualnych parametrów"
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.hewalex_obieg_cwu_wlaczenie
+  action:
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.hewalex_cwu_status
+      data:
+        option: >-
+          {% if is_state('binary_sensor.hewalex_obieg_cwu_wlaczenie', 'on') %} Tak
+          {% else %} Nie {% endif %}

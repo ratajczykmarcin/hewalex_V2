@@ -1,0 +1,7 @@
+##  
+  hewalex_cwu_status:
+    name: Obieg CWU - włączenie
+    options:
+      - "Nie"
+      - "Tak"
+    icon: mdi:border-none-variant
